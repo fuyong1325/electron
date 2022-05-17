@@ -1,0 +1,65 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "electron:generate-icons": "electron-icon-builder --input=./src/assets/icon.png --output=build --flatten",
+    "packager": "electron-packager ./ electron --platform=win32 --icon=./build/icons/icon.ico --arch=x64 --asar --overwrite --ignore=node_modules --electron-version=18.2.3",
+    "build:win": "electron-builder --win --x64"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^18.2.3",
+    "electron-builder": "^23.0.3",
+    "electron-icon-builder": "^2.0.1",
+    "electron-packager": "^15.5.1"
+  },
+  "dependencies": {
+    "getmac": "^5.20.0",
+    "ip": "^1.1.8"
+  },
+  "build": {
+    "appId": "electron.electron-vue",
+    "productName": "electron",
+    "copyright": "ebicom",
+    "compression": "maximum",
+    "directories": {
+      "buildResources":"build",
+      "output": "build"
+    },
+    "mac": {
+      "icon": "./build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "./build/icons/icon.ico",
+      "target": "nsis"
+    },
+    "linux": {
+      "icon": "./build/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "guid": "electron",
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./build/icons/icon.ico",
+      "uninstallerIcon": "./build/icons/icon.ico",
+      "installerHeaderIcon": "./build/icons/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "electron"
+    }
+  }
+}
