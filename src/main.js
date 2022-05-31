@@ -1,8 +1,8 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const path = require('path')
 
-const mainWindowURL = 'http://ebicom.cn'
+const mainWindowURL = 'http://192.168.0.58:8143/'
 let loadingWindow = null
 let loadSrc = path.join(__dirname, './loading.html')
 let contents = null
@@ -28,40 +28,42 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
+    resizable: false,
     maximizable: false,
     show: false,
     // fullscreen: true,
-    icon: path.join(__dirname, '../src/icons/icon.ico'),
+    icon: path.join(__dirname, './icons/icon.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      // nodeIntegration: true,
-      // contextIsolation: false,
+      nodeIntegration: true,
+      contextIsolation: false,
       // enableRemoteModule: true,
       // nativeWindowOpen: true,
     }
   });
   Menu.setApplicationMenu(null); //隐藏应用程序菜单.
   mainWindow.loadURL(mainWindowURL, {
-    userAgent: 'Chrome',
-    httpReferrer: 'http://www.baidu.com/'
+    // userAgent: 'Chrome',
+    // httpReferrer: 'http://www.baidu.com/'
   }); //设置访问地址
 
   // and load the index.html of the app.
   // mainWindow.loadFile('index.html')
   // mainWindow.loadFile('./dist/index.html')
+  // mainWindow.loadFile(path.join(__dirname, './dist/index.html'))
 
   // mainWindow.show();
   contents = mainWindow.webContents
   // console.log('123456789', contents.getUserAgent())
   contents.on('dom-ready', () => {
-    console.log('dom-ready----------');
+    console.log('webContents dom-ready');
     loadingWindow.hide();
     loadingWindow.close();
     mainWindow.show();
   });
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   //禁止程序打开第二次, 第二次打开时会将焦点聚焦到上次打开的窗口.
   const gotTheLock = app.requestSingleInstanceLock();
@@ -104,3 +106,9 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipcMain.on('asynchronous-message', function(event, arg) {
+  console.log(arg); // prints "ping"
+  // 回应异步消息
+  // event.sender.send('asynchronous-reply', 'pong');
+})

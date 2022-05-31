@@ -2,10 +2,7 @@
 node_modules
 electron-win32-x64
 /dist
-/build/win-unpacked
-/build/*.yml
-/build/*.yaml
-/build/*.exe*
+/build
 
 # local env files
 .env.local
