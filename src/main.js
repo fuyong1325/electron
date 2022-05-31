@@ -4,7 +4,8 @@ const path = require('path')
 
 const mainWindowURL = 'http://ebicom.cn'
 let loadingWindow = null
-let loadSrc = path.join(__dirname, './src/loading.html')
+let loadSrc = path.join(__dirname, './loading.html')
+let contents = null
 
 const showLoading = (cb) => {
   loadingWindow = new BrowserWindow({
@@ -25,44 +26,42 @@ const showLoading = (cb) => {
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1400,
-    height: 800,
-    maximizable: true,
+    width: 1920,
+    height: 1080,
+    maximizable: false,
     show: false,
     // fullscreen: true,
-    icon: path.join(__dirname, './build/icons/icon.ico'),
+    icon: path.join(__dirname, '../src/icons/icon.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true,
-      contextIsolation: false,
+      // nodeIntegration: true,
+      // contextIsolation: false,
       // enableRemoteModule: true,
-      nativeWindowOpen: true,
-      title: '主窗口'
+      // nativeWindowOpen: true,
     }
   });
   Menu.setApplicationMenu(null); //隐藏应用程序菜单.
-  // mainWindow.setAutoHideMenuBar(true);//自动隐藏菜单
-  // mainWindow.loadURL(mainWindowURL, {
-  //   userAgent: 'Chrome',
-  //   httpReferrer: 'http://www.baidu.com/'
-  // }); //设置访问地址
+  mainWindow.loadURL(mainWindowURL, {
+    userAgent: 'Chrome',
+    httpReferrer: 'http://www.baidu.com/'
+  }); //设置访问地址
 
   // and load the index.html of the app.
   // mainWindow.loadFile('index.html')
   // mainWindow.loadFile('./dist/index.html')
 
   // mainWindow.show();
-  setTimeout(() => {
-    mainWindow.loadURL(mainWindowURL);  // 模拟启动准备时间
-  }, 2000);
-  mainWindow.once('ready-to-show', () => {
+  contents = mainWindow.webContents
+  // console.log('123456789', contents.getUserAgent())
+  contents.on('dom-ready', () => {
+    console.log('dom-ready----------');
     loadingWindow.hide();
     loadingWindow.close();
     mainWindow.show();
   });
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   //禁止程序打开第二次, 第二次打开时会将焦点聚焦到上次打开的窗口.
   const gotTheLock = app.requestSingleInstanceLock();

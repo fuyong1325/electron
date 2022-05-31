@@ -6,7 +6,10 @@
 // process.
 const getMac = require('getmac').default;
 const clientId = getMac();
-console.log("本机mac地址：", clientId);  
+console.log("本机mac地址：", clientId);
+
+const IP = require('ip')
+console.log('获得的IP地址==', IP.address())
 
 
 const http = require('http')

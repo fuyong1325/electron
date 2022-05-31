@@ -17,8 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	console.log('os.family====', sessionStorage.getItem('family'))
 	console.log(sessionStorage.getItem('name'))
 
-	const IP = require('ip')
-	console.log('获得的IP地址==', IP.address())
+	// const IP = require('ip')
+	// console.log('获得的IP地址==', IP.address())
 
 
  	// let interfaces = OS.networkInterfaces();
