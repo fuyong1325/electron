@@ -1,11 +1,13 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const path = require('path')
+const config = require('./config') 
 
-const mainWindowURL = 'http://192.168.0.58:8143/'
+const mainWindowURL = `${config.BASE_URL}` // 通过配置文件获取url
+let mainWindow = null
 let loadingWindow = null
 let loadSrc = path.join(__dirname, './loading.html')
-let contents = null
+let mainContents = null
 
 const showLoading = (cb) => {
   loadingWindow = new BrowserWindow({
@@ -15,7 +17,8 @@ const showLoading = (cb) => {
     width: 400,
     height: 300,
     resizable: false, // 是否可手动调整大小
-    transparent: true // 窗口是否支持透明，如果想做高级效果最好为true
+    transparent: true, // 窗口是否支持透明，如果想做高级效果最好为true
+    backgroundColor: '#00000000',
   });
 
   loadingWindow.once('show', cb);
@@ -25,13 +28,13 @@ const showLoading = (cb) => {
 
 function createWindow () {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
     resizable: false,
     maximizable: false,
     show: false,
-    // fullscreen: true,
+    center: true, // 是否出现在屏幕居中的位置 
     icon: path.join(__dirname, './icons/icon.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -53,9 +56,8 @@ function createWindow () {
   // mainWindow.loadFile(path.join(__dirname, './dist/index.html'))
 
   // mainWindow.show();
-  contents = mainWindow.webContents
-  // console.log('123456789', contents.getUserAgent())
-  contents.on('dom-ready', () => {
+  mainContents = mainWindow.webContents
+  mainContents.on('dom-ready', () => {
     console.log('webContents dom-ready');
     loadingWindow.hide();
     loadingWindow.close();
@@ -81,6 +83,9 @@ function createWindow () {
   }
 
 }
+
+app.disableDomainBlockingFor3DAPIs(); // 关闭3D api, 提高兼容性 
+app.disableHardwareAcceleration(); // 关闭硬件加速, 减少渲染问题
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

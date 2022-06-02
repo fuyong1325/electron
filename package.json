@@ -2,18 +2,22 @@
   "name": "gebm",
   "version": "0.1.0",
   "description": "Geriatrics EBM Organization Client",
+  "author": "ebicom",
   "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
     "electron:generate-icons": "electron-icon-builder --input=./src/assets/icon.png --output=src --flatten",
     "packager": "electron-packager ./ gebm --platform=win32 --out ./dist --icon=./src/icons/icon.ico --arch=x64 --asar --overwrite --ignore=node_modules --electron-version=18.2.3",
-    "build:win": "electron-builder --win --x64"
+    "build:win32": "electron-builder --win --ia32",
+    "build:win64": "electron-builder --win --x64",
+    "build:mac": "electron-builder --mac"
   },
   "dependencies": {
     "getmac": "^5.20.0",
     "ip": "^1.1.8"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "electron": "^18.2.3",
     "electron-builder": "^23.0.3",
     "electron-icon-builder": "^2.0.1",
@@ -24,23 +28,20 @@
     "productName": "gebm",
     "copyright": "ebicom",
     "compression": "maximum",
+    "files": [ 
+      "src/**/*"
+    ], 
     "directories": {
       "buildResources": "build",
       "output": "build"
     },
     "mac": {
       "icon": "./src/icons/icon.icns",
-      "target": [
-        "dmg",
-        "zip"
-      ]
+      "target": "dmg"
     },
     "win": {
       "icon": "./src/icons/icon.ico",
-      "target": [
-        "nsis",
-        "zip"
-      ]
+      "target": "nsis"
     },
     "linux": {
       "icon": "./src/icons/icon.ico"
