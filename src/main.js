@@ -31,8 +31,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
-    resizable: false,
-    maximizable: false,
+    // resizable: false,
+    // maximizable: false,
     show: false,
     center: true, // 是否出现在屏幕居中的位置 
     icon: path.join(__dirname, './icons/icon.ico'),

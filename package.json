@@ -55,7 +55,6 @@
       "installerIcon": "./src/icons/icon.ico",
       "uninstallerIcon": "./src/icons/icon.ico",
       "installerHeaderIcon": "./src/icons/icon.ico",
-      "installerSidebar": "./src/assets/img.bmp",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "gebm"
