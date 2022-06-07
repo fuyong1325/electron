@@ -2,7 +2,7 @@
   "name": "gebm",
   "version": "0.1.0",
   "description": "Geriatrics EBM Organization Client",
-  "author": "ebicom",
+  "author": "四川宜蓓康科技有限公司",
   "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
@@ -25,7 +25,7 @@
   },
   "build": {
     "appId": "gebm-org-client",
-    "productName": "gebm",
+    "productName": "GEBM",
     "copyright": "ebicom",
     "compression": "maximum",
     "files": [ 
@@ -57,7 +57,8 @@
       "installerHeaderIcon": "./src/icons/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "gebm"
+      "artifactName": "${productName} ${version}.${ext}",
+      "shortcutName": "GEBM"
     }
   }
 }
