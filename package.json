@@ -6,7 +6,7 @@
   "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
-    "electron:generate-icons": "electron-icon-builder --input=./src/assets/icon.png --output=src --flatten",
+    "electron:generate-icons": "electron-icon-builder --input=./src/assets/logo.png --output=src --flatten",
     "packager": "electron-packager ./ gebm --platform=win32 --out ./dist --icon=./src/icons/icon.ico --arch=x64 --asar --overwrite --ignore=node_modules --electron-version=18.2.3",
     "build:win32": "electron-builder --win --ia32",
     "build:win64": "electron-builder --win --x64",
@@ -55,6 +55,7 @@
       "installerIcon": "./src/icons/icon.ico",
       "uninstallerIcon": "./src/icons/icon.ico",
       "installerHeaderIcon": "./src/icons/icon.ico",
+      "installerSidebar": "./src/assets/sidebar.bmp",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "artifactName": "${productName} ${version}.${ext}",
