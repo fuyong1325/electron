@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const path = require('path')
-const config = require('./config') 
+const config = require('./config')
 
 const mainWindowURL = `${config.BASE_URL}` // 通过配置文件获取url
 let mainWindow = null
@@ -46,6 +46,7 @@ function createWindow () {
   });
   Menu.setApplicationMenu(null); //隐藏应用程序菜单.
   mainWindow.loadURL(mainWindowURL, {
+    'extraHeaders': 'pragma: no-cache\n',
     // userAgent: 'Chrome',
     // httpReferrer: 'http://www.baidu.com/'
   }); //设置访问地址
@@ -59,10 +60,18 @@ function createWindow () {
   mainContents = mainWindow.webContents
   mainContents.on('dom-ready', () => {
     console.log('webContents dom-ready');
-    loadingWindow.hide();
-    loadingWindow.close();
+    if (loadingWindow) {
+      loadingWindow.hide();
+      loadingWindow.close();
+      loadingWindow = null;
+    }
     mainWindow.show();
   });
+
+  // mainContents.reloadIgnoringCache()
+  // let session = mainWindow.webContents.session
+  // session.clearCache()
+  // session.clearStorageData()
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -86,6 +95,7 @@ function createWindow () {
 
 app.disableDomainBlockingFor3DAPIs(); // 关闭3D api, 提高兼容性 
 app.disableHardwareAcceleration(); // 关闭硬件加速, 减少渲染问题
+// app.commandLine.appendSwitch("--disable-http-cache"); // 禁用HTTP请求的磁盘缓存
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
