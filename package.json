@@ -5,6 +5,7 @@
   "author": "四川宜蓓康科技有限公司",
   "main": "./src/main.js",
   "scripts": {
+    "clean": "rimraf ./build",
     "start": "electron .",
     "electron:generate-icons": "electron-icon-builder --input=./src/assets/logo.png --output=src --flatten",
     "packager": "electron-packager ./ gebm --platform=win32 --out ./dist --icon=./src/icons/icon.ico --arch=x64 --asar --overwrite --ignore=node_modules --electron-version=18.2.3",
@@ -13,6 +14,7 @@
     "build:mac": "electron-builder --mac"
   },
   "dependencies": {
+    "electron-updater": "^5.0.1",
     "getmac": "^5.20.0",
     "ip": "^1.1.8"
   },
@@ -28,9 +30,15 @@
     "productName": "GEBM",
     "copyright": "四川宜蓓康科技有限公司",
     "compression": "maximum",
-    "files": [ 
+    "publish": [
+      {
+        "provider": "generic",
+        "url": ""
+      }
+    ],
+    "files": [
       "src/**/*"
-    ], 
+    ],
     "directories": {
       "buildResources": "build",
       "output": "build"

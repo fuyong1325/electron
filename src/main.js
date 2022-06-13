@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const path = require('path')
+const { updateHandle } = require('./update')
 const config = require('./config')
 
 const mainWindowURL = `${config.BASE_URL}` // 通过配置文件获取url
@@ -52,9 +53,7 @@ function createWindow () {
   }); //设置访问地址
 
   // and load the index.html of the app.
-  // mainWindow.loadFile('index.html')
-  // mainWindow.loadFile('./dist/index.html')
-  // mainWindow.loadFile(path.join(__dirname, './dist/index.html'))
+  // mainWindow.loadFile(path.join(__dirname, './index.html'))
 
   // mainWindow.show();
   mainContents = mainWindow.webContents
@@ -64,6 +63,7 @@ function createWindow () {
       loadingWindow.hide();
       loadingWindow.close();
       loadingWindow = null;
+      // updateHandle(mainWindow);
     }
     mainWindow.show();
   });
