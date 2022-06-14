@@ -1,6 +1,10 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
 window.addEventListener('DOMContentLoaded', () => {
+  global.electron = require('electron');
+  window.ipcRenderer = require('electron').ipcRenderer;
+  window.remote = require('electron').remote;
+
 	const OS = require('os');
   if(OS.networkInterfaces().WLAN){
     sessionStorage.mac = OS.networkInterfaces().WLAN[0].mac
