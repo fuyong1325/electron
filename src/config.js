@@ -4,7 +4,7 @@ module.exports = {
   UPLOAD_URL: 'https://test-gebm-public.oss-cn-hangzhou.aliyuncs.com/public/pc-client',
   
   // 连测试
-  // BASE_URL: 'https://test-org-pc.ebi-geriatrics.com/user/login',
+  // BASE_URL: 'https://test-gebm-org-pc.ebi-geriatrics.com/user/login',
   
   // 连正式
   // BASE_URL: 'https://www.ebi-geriatrics.com/user/login',
