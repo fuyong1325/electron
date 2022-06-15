@@ -1,6 +1,6 @@
 module.exports = {
   // 内部版本号
-  version: 2,
+  version: 1,
   // 连本地
   // BASE_URL: 'http://192.168.0.77:8143/user/login',
   UPLOAD_URL: 'https://ebicom-public.ebi-geriatrics.com/public/app/gebm-win',
