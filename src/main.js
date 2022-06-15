@@ -66,6 +66,10 @@ function createWindow () {
       // updateHandle(mainWindow);
     }
     mainWindow.show();
+    mainContents.send('config', {
+      appVersion: app.getVersion(),
+      version: config.version,
+    });
   });
 
   // mainContents.reloadIgnoringCache()
@@ -122,8 +126,12 @@ app.on('window-all-closed', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-ipcMain.on('asynchronous-message', function(event, arg) {
-  console.log(arg); // prints "ping"
+// 监听版本更新信息
+ipcMain.on('latestVersion', function(event, arg) {
+  console.log(arg);
+  if (arg && arg.downloadUrl) {
+    updateHandle(mainWindow, arg.downloadUrl);
+  }
   // 回应异步消息
   // event.sender.send('asynchronous-reply', 'pong');
 })

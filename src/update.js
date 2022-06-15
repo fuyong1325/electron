@@ -5,7 +5,7 @@ const { app, ipcMain, dialog } = require('electron');
 const { UPLOAD_URL } = require('./config');
 let mainWindow = null;
 
-function updateHandle(window) {
+function updateHandle(window, url) {
   mainWindow = window;// 获取当前窗口
   autoUpdater.autoInstallOnAppQuit = false; // 退出时是否自动更新，默认为true
   autoUpdater.autoDownload = false; // 是否自动更新，默认为true
@@ -18,7 +18,8 @@ console.log(`App v${app.getVersion()} starting...`)
   //   autoUpdater.currentVersion = packageConfig.version;
   // }
   //设置更新包的地址
-  autoUpdater.setFeedURL(UPLOAD_URL);
+  // autoUpdater.setFeedURL(UPLOAD_URL);
+  autoUpdater.setFeedURL(url);
 
   //通过main进程发送事件给renderer进程，提示更新信息
   function sendUpdateMessage(text) {
@@ -112,6 +113,14 @@ console.log(`App v${app.getVersion()} starting...`)
   ipcMain.on('confirmDownloadUpdate', () => {
     autoUpdater.downloadUpdate();
   });
+
+  try {
+    //autoUpdater.setFeedURL('')
+    autoUpdater.checkForUpdates()
+    //autoUpdater.checkForUpdatesAndNotify()
+  } catch (error) {
+    console.log(error)
+  }
 
 }
 
