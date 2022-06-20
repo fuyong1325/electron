@@ -26,37 +26,23 @@
     "electron-packager": "^15.5.1"
   },
   "build": {
-    "appId": "gebm-org-client",
-    "productName": "GEBM",
-    "copyright": "四川宜蓓康科技有限公司",
-    "compression": "maximum",
+    "extraFiles": [],
     "publish": [
       {
         "provider": "generic",
         "url": ""
       }
     ],
-    "files": [
-      "src/**/*"
-    ],
+    "productName": "GEBM",
+    "appId": "gebm-org-client",
+    "copyright": "四川宜蓓康科技有限公司",
+    "compression": "maximum",
     "directories": {
       "buildResources": "build",
       "output": "build"
     },
-    "mac": {
-      "icon": "./src/icons/icon.icns",
-      "target": "dmg"
-    },
-    "win": {
-      "icon": "./src/icons/icon.ico",
-      "target": "nsis"
-    },
-    "linux": {
-      "icon": "./src/icons/icon.ico"
-    },
     "nsis": {
       "oneClick": false,
-      "guid": "gebm-org-client",
       "perMachine": true,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
@@ -66,8 +52,24 @@
       "installerSidebar": "./src/assets/sidebar.bmp",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "artifactName": "${productName}.${ext}",
+      "deleteAppDataOnUninstall": true,
+      "artifactName": "${productName}_Setup.${ext}",
       "shortcutName": "GEBM"
+    },
+    "files": [
+      "src/**/*"
+    ],
+    "mac": {
+      "icon": "./src/icons/icon.icns",
+      "target": "dmg"
+    },
+    "win": {
+      "icon": "./src/icons/icon.ico",
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "deb",
+      "icon": "./src/icons/icon.ico"
     }
   }
 }
