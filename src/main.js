@@ -39,6 +39,7 @@ function createWindow () {
     icon: path.join(__dirname, './assets/favicon.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      partition: String(+new Date()),
       nodeIntegration: true,
       contextIsolation: false,
       // enableRemoteModule: true,
@@ -63,7 +64,6 @@ function createWindow () {
       loadingWindow.hide();
       loadingWindow.close();
       loadingWindow = null;
-      // updateHandle(mainWindow);
     }
     mainWindow.show();
     mainContents.send('config', {

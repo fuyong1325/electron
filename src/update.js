@@ -2,7 +2,6 @@ const { autoUpdater } = require('electron-updater');
 const { app, ipcMain, dialog } = require('electron');
 // const packageConfig = require('../package.json');
 // 更新服务器地址，比如"http://**.**.**.**:3002/download/"
-const { UPLOAD_URL } = require('./config');
 let mainWindow = null;
 
 function updateHandle(window, url) {
@@ -18,7 +17,6 @@ console.log(`App v${app.getVersion()} starting...`)
   //   autoUpdater.currentVersion = packageConfig.version;
   // }
   //设置更新包的地址
-  // autoUpdater.setFeedURL(UPLOAD_URL);
   autoUpdater.setFeedURL(url);
 
   //通过main进程发送事件给renderer进程，提示更新信息
