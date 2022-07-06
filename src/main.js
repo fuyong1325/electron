@@ -138,3 +138,15 @@ ipcMain.on('latestVersion', function(event, arg) {
   // 回应异步消息
   // event.sender.send('asynchronous-reply', 'pong');
 })
+
+// 监听数据持久化储存
+const Store = require("electron-store")
+const store = new Store()
+ipcMain.handle('getStorage', (event) => {
+  return Promise.resolve(store.store)
+})
+ipcMain.on('setStorage', function(event, arg) {
+  if (arg) {
+    store.set(arg.key, arg.value);
+  }
+})
