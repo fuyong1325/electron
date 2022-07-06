@@ -1,6 +1,6 @@
 {
   "name": "gebm",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Geriatrics EBM Organization Client",
   "author": "四川宜蓓康科技有限公司",
   "main": "./src/main.js",
