@@ -67,6 +67,7 @@ function createWindow () {
       loadingWindow.close();
       loadingWindow = null;
     }
+    mainWindow.maximize();
     mainWindow.show();
     mainContents.send('config', {
       appVersion: app.getVersion(),
