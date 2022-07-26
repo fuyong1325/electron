@@ -34,7 +34,7 @@
         "url": ""
       }
     ],
-    "productName": "EBI GEBM.R",
+    "productName": "GEBM",
     "appId": "gebm-org-client",
     "copyright": "四川宜蓓康科技有限公司",
     "compression": "maximum",
@@ -55,7 +55,8 @@
       "createStartMenuShortcut": true,
       "deleteAppDataOnUninstall": true,
       "artifactName": "${productName}_Setup.${ext}",
-      "shortcutName": "EBI GEBM.R"
+      "shortcutName": "EBI GEBM.R",
+      "include": "./src/installer.nsh"
     },
     "files": [
       "src/**/*"
