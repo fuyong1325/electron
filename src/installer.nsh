@@ -1,3 +1,14 @@
+; Manual
+; https://www.electron.build/configuration/nsis.html#custom-nsis-script
+; https://documentation.help/CTRE-NSIS/Section4.7.html
+; https://nsis.sourceforge.io/Reference/SetRegView
+; https://nsis.sourceforge.io/Docs/
+
+; Reference
+; https://www.jianshu.com/p/cea38eb17c3a
+; https://juejin.cn/post/7018110903144955934
+; https://codeantenna.com/a/a5Krbu3vPT
+
 !define DIR_NAME "EBICOM"
 
 Function .onVerifyInstDir
