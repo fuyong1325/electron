@@ -1,9 +1,14 @@
 !define DIR_NAME "EBICOM"
 
 Function .onVerifyInstDir
-  StrLen $0 "\${DIR_NAME}"
+  StrLen $R0 "\${DIR_NAME}"
+  StrCpy $R1 "$INSTDIR" "" -$R0
+  StrCmp $R1 "\${DIR_NAME}" 0 +2
+  StrCpy $INSTDIR "$INSTDIR\${PRODUCT_NAME}"
+
+  StrLen $0 "\${DIR_NAME}\${PRODUCT_NAME}"
   StrCpy $1 "$INSTDIR" "" -$0
-  StrCmp $1 "\${DIR_NAME}" +2 0
+  StrCmp $1 "\${DIR_NAME}\${PRODUCT_NAME}" +2 0
   StrCpy $INSTDIR "$INSTDIR\${DIR_NAME}\${PRODUCT_NAME}"
 FunctionEnd
 
