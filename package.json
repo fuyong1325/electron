@@ -1,6 +1,6 @@
 {
   "name": "gebm",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Geriatrics EBM Organization Client",
   "author": "四川宜蓓康科技有限公司",
   "main": "./src/main.js",
@@ -51,6 +51,8 @@
       "uninstallerIcon": "./src/icons/icon.ico",
       "installerHeaderIcon": "./src/icons/icon.ico",
       "installerSidebar": "./src/assets/sidebar.bmp",
+      "uninstallerSidebar": "./src/assets/sidebar.bmp",
+      "uninstallDisplayName": "${productName}",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "deleteAppDataOnUninstall": true,
