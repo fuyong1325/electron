@@ -1,5 +1,5 @@
 {
-  "name": "gebm",
+  "name": "ebi-geriatrics",
   "version": "1.2.0",
   "description": "Geriatrics EBM Organization Client",
   "author": "四川宜蓓康科技有限公司",
@@ -34,8 +34,8 @@
         "url": ""
       }
     ],
-    "productName": "GEBM",
-    "appId": "gebm-org-client",
+    "productName": "ebi-Geriatrics",
+    "appId": "ebi-geriatrics-org-client",
     "copyright": "四川宜蓓康科技有限公司",
     "compression": "maximum",
     "directories": {
@@ -57,7 +57,7 @@
       "createStartMenuShortcut": true,
       "deleteAppDataOnUninstall": true,
       "artifactName": "${productName}_Setup.${ext}",
-      "shortcutName": "EBI GEBM.R",
+      "shortcutName": "ebi-Geriatrics",
       "include": "./src/installer.nsh"
     },
     "files": [
