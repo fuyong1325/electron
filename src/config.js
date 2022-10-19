@@ -1,6 +1,6 @@
 module.exports = {
   // 内部版本号
-  version: 6,
+  version: 7,
   // 连本地
   // BASE_URL: 'http://192.168.0.77:8143/user/login',
   
