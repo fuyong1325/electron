@@ -38,7 +38,7 @@ function createWindow () {
     // maximizable: false,
     show: false,
     center: true, // 是否出现在屏幕居中的位置 
-    icon: path.join(__dirname, './assets/favicon.png'),
+    icon: path.join(__dirname, './assets/favicon.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       partition: String(+new Date()),
